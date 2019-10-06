@@ -24,21 +24,23 @@ public class Tasks {
 	private static Map<String, Double> timedTasks = new HashMap<>();
 	private static Map<String, Double> oneTimeTasks = new HashMap<>();
 	private static Map<String, Double> repeatableTasks = new HashMap<>();
+	
+	private static String rewardTrackerTasksFile = "C:/Users/Autumn Herness/Desktop/RewardTrackerExcelFiles/RewardTrackerTasks.xlsx";
 
-	private static String timedTasksFile = "C:/Users/Autumn Herness/Desktop/RewardTrackerExcelFiles/TimedTasks.xlsx";
-	private static String oneTimeTasksFile = "C:/Users/Autumn Herness/Desktop/RewardTrackerExcelFiles/OneTimeTasks.xlsx";
-	private static String repeatableTasksFile = "C:/Users/Autumn Herness/Desktop/RewardTrackerExcelFiles/RepeatableTasks.xlsx";
+	private static String timedTasksSheet = "TimedTasks";
+	private static String oneTimeTasksSheet = "OneTimeTasks";
+	private static String repeatableTasksSheet = "RepeatableTasks";
 
-	private static Map<Task, String> filenameMap = new HashMap<>();
+	private static Map<Task, String> sheetNameMap = new HashMap<>();
 
 	private static void fillFixedMaps() {
 		taskTypeMaps.put(Task.TIMED, timedTasks);
 		taskTypeMaps.put(Task.ONE_TIME, oneTimeTasks);
 		taskTypeMaps.put(Task.REPEATABLE, repeatableTasks);
 
-		filenameMap.put(Task.TIMED, timedTasksFile);
-		filenameMap.put(Task.ONE_TIME, oneTimeTasksFile);
-		filenameMap.put(Task.REPEATABLE, repeatableTasksFile);
+		sheetNameMap.put(Task.TIMED, timedTasksSheet);
+		sheetNameMap.put(Task.ONE_TIME, oneTimeTasksSheet);
+		sheetNameMap.put(Task.REPEATABLE, repeatableTasksSheet);
 	}
 
 	/**
@@ -47,46 +49,40 @@ public class Tasks {
 	 */
 	static void initializeTaskLists() {
 		fillFixedMaps();
-		for (Task taskType : Task.values()) {
-			try {
-				FileInputStream file = new FileInputStream(new File(filenameMap.get(taskType)));
-				
-				try {
-					XSSFWorkbook wb = new XSSFWorkbook(file);
-					XSSFSheet sheet = wb.getSheetAt(0);
+		try {
+			FileInputStream file = new FileInputStream(new File(rewardTrackerTasksFile));
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			
+			for (Task taskType : Task.values()) {
+				XSSFSheet sheet = workbook.getSheet(sheetNameMap.get(taskType));
+				Iterator<Row> rowIterator = sheet.iterator();
+				while (rowIterator.hasNext()) {
+					String taskName = "";
+					Row row = rowIterator.next();
+					Iterator<Cell> cellIterator = row.cellIterator();
 
-					Iterator<Row> rowIterator = sheet.iterator();
-					while (rowIterator.hasNext()) {
-						String taskName = "";
-						Row row = rowIterator.next();
-						Iterator<Cell> cellIterator = row.cellIterator();
-
-						Cell cell = cellIterator.next();
-						if (cell.getCellType() == CellType.STRING) {
-							taskName = cell.getStringCellValue();
-						} else {
-							System.out.println("Task Name must be String.");
-						}
-						try {
-							cell = cellIterator.next();
-							try {
-								double value = cell.getNumericCellValue();
-								taskTypeMaps.get(taskType).put(taskName, value);
-							} catch (Exception e) {
-								System.out.println("Score values must be numeric. Value was " + cell.getStringCellValue());
-							}
-						} catch (Exception e) {
-							System.out.println("Each Task Name requires an accompanying score");
-						}
+					Cell cell = cellIterator.next();
+					if (cell.getCellType() == CellType.STRING) {
+						taskName = cell.getStringCellValue();
+					} else {
+						System.out.println("Task Name must be String.");
 					}
-					wb.close();
-				} catch (Exception e) {
-					System.out.println("Some issue with Excel");
+					try {
+						cell = cellIterator.next();
+						try {
+							double value = cell.getNumericCellValue();
+							taskTypeMaps.get(taskType).put(taskName, value);
+						} catch (Exception e) {
+							System.out.println("Score values must be numeric. Value was " + cell.getStringCellValue());
+						}
+					} catch (Exception e) {
+						System.out.println("Each Task Name requires an accompanying score");
+					}
 				}
-				
-			} catch (Exception e) {
-				System.out.println("Did not find file " + filenameMap.get(taskType));
 			}
+			workbook.close();
+		} catch (Exception e) {
+			System.out.println("Was not able to find file " + rewardTrackerTasksFile);
 		}
 	}
 
@@ -94,9 +90,9 @@ public class Tasks {
 	 * Called before closing the program to update the Excel Files.
 	 */
 	static void writeTasksToExcelFiles() {
+        XSSFWorkbook workbook = new XSSFWorkbook();
 		for (Task taskType : Task.values()) {
-	        XSSFWorkbook workbook = new XSSFWorkbook();
-	        XSSFSheet sheet = workbook.createSheet();
+	        XSSFSheet sheet = workbook.createSheet(sheetNameMap.get(taskType));
 	        
 	        int rownum = 0;
 	        for (String key : taskTypeMaps.get(taskType).keySet()) {
@@ -107,15 +103,15 @@ public class Tasks {
 	            row.createCell(0).setCellValue(key);
 	            row.createCell(1).setCellValue(value);
 	        }
-	        try {
-	        	FileOutputStream out = new FileOutputStream(new File(filenameMap.get(taskType)));
-	            workbook.write(out);
-	            out.close();
-	            workbook.close();
-			} catch (IOException e) {
-				System.out.println("Was not able to save file for " + taskType.toString());
-			}
-	     }
+		}
+        try {
+        	FileOutputStream out = new FileOutputStream(new File(rewardTrackerTasksFile));
+            workbook.write(out);
+            out.close();
+            workbook.close();
+		} catch (IOException e) {
+			System.out.println("Was not able to save file " + rewardTrackerTasksFile);
+		}
 	}
 
 	static void addTask(String taskName, double value, Task taskType) {
