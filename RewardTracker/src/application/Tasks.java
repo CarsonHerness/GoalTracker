@@ -2,6 +2,8 @@ package application;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -91,11 +93,29 @@ public class Tasks {
 	/**
 	 * Called before closing the program to update the Excel Files.
 	 */
-	protected static void writeToExcelFiles() {
-		// TODO: implement
+	static void writeTasksToExcelFiles() {
 		for (Task taskType : Task.values()) {
-			System.out.println(taskType);
-		}
+	        XSSFWorkbook workbook = new XSSFWorkbook();
+	        XSSFSheet sheet = workbook.createSheet();
+	        
+	        int rownum = 0;
+	        for (String key : taskTypeMaps.get(taskType).keySet()) {
+	            Row row = sheet.createRow(rownum++);
+	            Double value = taskTypeMaps.get(taskType).get(key);
+	            
+	            // | <Name of task> | <Point value> |
+	            row.createCell(0).setCellValue(key);
+	            row.createCell(1).setCellValue(value);
+	        }
+	        try {
+	        	FileOutputStream out = new FileOutputStream(new File(filenameMap.get(taskType)));
+	            workbook.write(out);
+	            out.close();
+	            workbook.close();
+			} catch (IOException e) {
+				System.out.println("Was not able to save file for " + taskType.toString());
+			}
+	     }
 	}
 
 	static void addTask(String taskName, double value, Task taskType) {
