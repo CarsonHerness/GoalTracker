@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyTaskOrRewardController">
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.ModifyTaskOrRewardController">
    <children>
       <Button fx:id="submitModification" layoutX="223.0" layoutY="256.0" mnemonicParsing="false" text="Submit" />
       <TextField fx:id="nameOfTaskOrReward" layoutX="57.0" layoutY="218.0" prefHeight="25.0" prefWidth="166.0" />

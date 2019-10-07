@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RedeemPointsController">
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.RedeemPointsController">
    <children>
       <Label fx:id="points" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="106.0" prefHeight="27.0" prefWidth="183.0" textAlignment="CENTER">
          <font>
