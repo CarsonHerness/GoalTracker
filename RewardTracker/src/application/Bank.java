@@ -25,10 +25,8 @@ public class Bank {
 	private static String pointsSheetName = "Points";
 	private static String rewardListSheetName = "Reward List";
 
-	// find way to quickly update affordable rewards, so don't have to search
-	// through
-	// entire HashMap to find the prices every time points change
 	private static Set<Reward> rewardSet = new HashSet<>();
+	private static Map<String, Reward> rewardMap = new HashMap<>();
 	private static Map<String, Double> rewardList = new HashMap<>();
 	private static Set<String> affordableRewardList = new HashSet<>();
 	private static double points;
@@ -56,7 +54,9 @@ public class Bank {
 					try {
 						double cost = cell.getNumericCellValue();
 						rewardList.put(rewardName, cost);
-						rewardSet.add(new Reward(rewardName, cost));
+						Reward reward = new Reward(rewardName, cost);
+						rewardSet.add(reward);
+						rewardMap.put(rewardName, reward);
 					} catch (Exception e) {
 						System.out.println("Score values must be numeric. Value was " + cell.getStringCellValue());
 					}
@@ -125,11 +125,21 @@ public class Bank {
 		return points;
 	}
 	
+	static Double getCost(String name) {
+		return rewardList.get(name);
+	}
+	
+	static void removeReward(String name) {
+		rewardList.remove(name);
+		rewardSet.remove(rewardMap.get(name));
+		affordableRewardList.remove(name);
+	}
+	
 	static void addPoints(double amount) {
 		points += amount;
 	}
 	
-	static void removePoints(double amount) {
+	static void spendPoints(double amount) {
 		if (points > amount) {
 			points -= amount;
 		} else {
