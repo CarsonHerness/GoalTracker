@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class EnterPointsController implements Initializable {
@@ -31,9 +32,11 @@ public class EnterPointsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		submitPointsTaskTypeList.setItems(FXCollections.observableArrayList(TaskType.values()));
 		submitPointsMinutes.setVisible(false);
+		submitPointsErrorMessage.setVisible(false);
 	}
 
 	public void chooseTaskType(ActionEvent event) {
+		submitPointsErrorMessage.setVisible(false);
 		taskType = submitPointsTaskTypeList.getValue();
 		submitPointsTaskNameList.setItems(Tasks.getTaskList(taskType));
 		if (taskType == TaskType.TIMED) {
@@ -47,29 +50,41 @@ public class EnterPointsController implements Initializable {
 		if (submitPointsTaskNameList.getValue() != null) {
 			submitPointsErrorMessage.setVisible(false);
 			switch (submitPointsTaskTypeList.getValue()) {
-			// TODO: update Main page and Reward Page: add menu button and close window each time
 			case TIMED:
 				String minutes = submitPointsMinutes.getText();
 				try {
 					double minutesNum = Double.parseDouble(minutes);
-					double addedPoints = minutesNum
+					double addedPointsTimed = minutesNum
 							* Tasks.getScore(TaskType.TIMED, submitPointsTaskNameList.getValue());
-					Bank.addPoints(addedPoints);
+					Bank.addPoints(addedPointsTimed);
+					submitPointsErrorMessage.setText("Successfully submitted $" + Double.toString(addedPointsTimed));
+					submitPointsErrorMessage.setTextFill(Color.GREEN);
+					submitPointsErrorMessage.setVisible(true);
 				} catch (Exception e) {
 					submitPointsErrorMessage.setText("Please enter a valid number of minutes");
+					submitPointsErrorMessage.setTextFill(Color.RED);
 					submitPointsErrorMessage.setVisible(true);
 				}
 				break;
 			case ONE_TIME:
-				Bank.addPoints(Tasks.getScore(TaskType.ONE_TIME, submitPointsTaskNameList.getValue()));
+				double addedPointsOneTime = Tasks.getScore(TaskType.ONE_TIME, submitPointsTaskNameList.getValue());
+				Bank.addPoints(addedPointsOneTime);
+				submitPointsErrorMessage.setText("Successfully submitted $" + Double.toString(addedPointsOneTime));
+				submitPointsErrorMessage.setTextFill(Color.GREEN);
+				submitPointsErrorMessage.setVisible(true);
 				break;
 			case REPEATABLE:
-				Bank.addPoints(Tasks.getScore(TaskType.REPEATABLE, submitPointsTaskNameList.getValue()));
+				double addedPointsRepeatable = Tasks.getScore(TaskType.REPEATABLE, submitPointsTaskNameList.getValue());
+				Bank.addPoints(addedPointsRepeatable);
+				submitPointsErrorMessage.setText("Successfully submitted $" + Double.toString(addedPointsRepeatable));
+				submitPointsErrorMessage.setTextFill(Color.GREEN);
+				submitPointsErrorMessage.setVisible(true);
 				break;
 			}
 
 		} else {
 			submitPointsErrorMessage.setText("Please select Task");
+			submitPointsErrorMessage.setTextFill(Color.RED);
 			submitPointsErrorMessage.setVisible(true);
 		}
 	}

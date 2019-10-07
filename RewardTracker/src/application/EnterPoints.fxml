@@ -18,7 +18,7 @@
       <Button fx:id="submitPoints" layoutX="224.0" layoutY="214.0" mnemonicParsing="false" onAction="#submitPoints" text="Submit" />
       <ComboBox fx:id="submitPointsTaskNameList" layoutX="278.0" layoutY="137.0" prefWidth="150.0" promptText="Choose Task" />
       <ComboBox fx:id="submitPointsTaskTypeList" layoutX="63.0" layoutY="137.0" onAction="#chooseTaskType" prefWidth="150.0" promptText="Choose Task Type" />
-      <Label fx:id="submitPointsErrorMessage" layoutX="10.0" layoutY="263.0" prefHeight="20.0" prefWidth="481.0" textAlignment="CENTER" textFill="#f51414">
+      <Label fx:id="submitPointsErrorMessage" alignment="CENTER" layoutX="10.0" layoutY="263.0" prefHeight="20.0" prefWidth="481.0" textAlignment="CENTER" textFill="#f51414">
          <font>
             <Font size="14.0" />
          </font>
