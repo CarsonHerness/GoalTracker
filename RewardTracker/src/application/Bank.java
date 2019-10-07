@@ -53,10 +53,7 @@ public class Bank {
 					cell = cellIterator.next();
 					try {
 						double cost = cell.getNumericCellValue();
-						rewardList.put(rewardName, cost);
-						Reward reward = new Reward(rewardName, cost);
-						rewardSet.add(reward);
-						rewardMap.put(rewardName, reward);
+						addReward(rewardName, cost);
 					} catch (Exception e) {
 						System.out.println("Score values must be numeric. Value was " + cell.getStringCellValue());
 					}
@@ -127,6 +124,13 @@ public class Bank {
 	
 	static Double getCost(String name) {
 		return rewardList.get(name);
+	}
+	
+	static void addReward(String name, double cost) {
+		rewardList.put(name, cost);
+		Reward reward = new Reward(name, cost);
+		rewardSet.add(reward);
+		rewardMap.put(name, reward);	
 	}
 	
 	static void removeReward(String name) {
