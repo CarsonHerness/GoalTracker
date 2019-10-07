@@ -1,9 +1,7 @@
 package application;
 
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
