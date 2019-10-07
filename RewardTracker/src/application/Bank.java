@@ -124,4 +124,16 @@ public class Bank {
 	static Double getPoints() {
 		return points;
 	}
+	
+	static void addPoints(double amount) {
+		points += amount;
+	}
+	
+	static void removePoints(double amount) {
+		if (points > amount) {
+			points -= amount;
+		} else {
+			System.out.println("Cannot have negative points!");
+		}
+	}
 }

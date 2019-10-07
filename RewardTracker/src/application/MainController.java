@@ -16,8 +16,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
-	@FXML
-	private Label pointsLabel;
+	@FXML private Label pointsLabel;
 	
 	public void enterPoints(ActionEvent event) throws IOException {
 		Stage stage = new Stage();

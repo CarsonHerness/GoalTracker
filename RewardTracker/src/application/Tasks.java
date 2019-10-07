@@ -125,5 +125,9 @@ public class Tasks {
 	public static ObservableList<String> getTaskList(TaskType taskType) {
 		return FXCollections.observableArrayList(taskTypeMaps.get(taskType).keySet());
 	}
+	
+	static double getScore(TaskType taskType, String taskName) {
+		return taskTypeMaps.get(taskType).get(taskName);
+	}
 
 }
