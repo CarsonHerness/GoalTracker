@@ -36,10 +36,7 @@ public class RedeemPointsController implements Initializable{
 	}
 	
 	public void resetRewardData() {
-		DecimalFormat truncatedPoints = new DecimalFormat("#.##");
-		truncatedPoints.setRoundingMode(RoundingMode.DOWN);
-		String pointsMessage = "Bank: $" + truncatedPoints.format(Bank.getPoints());
-		points.setText(pointsMessage);
+		points.setText(Bank.getReadablePoints());
 		
 		redeemErrorMessage.setVisible(false);
 		if (Bank.getAffordableRewardList().size() > 0) {

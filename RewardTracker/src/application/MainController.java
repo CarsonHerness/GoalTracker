@@ -60,10 +60,7 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		DecimalFormat truncatedPoints = new DecimalFormat("#.##");
-		truncatedPoints.setRoundingMode(RoundingMode.DOWN);
-		String pointsMessage = "Bank: $" + truncatedPoints.format(Bank.getPoints());
-		pointsLabel.setText(pointsMessage);
+		pointsLabel.setText(Bank.getReadablePoints());
 	}
 
 }

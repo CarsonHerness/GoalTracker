@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -120,6 +122,12 @@ public class Bank {
 
 	static Double getPoints() {
 		return points;
+	}
+	
+	static String getReadablePoints() {
+		DecimalFormat truncatedPoints = new DecimalFormat("#.##");
+		truncatedPoints.setRoundingMode(RoundingMode.DOWN);
+		return "Bank: $" + truncatedPoints.format(points);
 	}
 	
 	static Double getCost(String name) {
