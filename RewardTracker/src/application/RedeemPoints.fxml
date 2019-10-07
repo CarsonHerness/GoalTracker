@@ -33,5 +33,6 @@
           <TableColumn fx:id="rewardCostColumn" prefWidth="62.0" text="Cost" />
         </columns>
       </TableView>
+      <Button fx:id="redeemBackToMenuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back To Main Menu" />
    </children>
 </AnchorPane>

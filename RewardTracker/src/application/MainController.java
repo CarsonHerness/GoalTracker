@@ -12,13 +12,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 	@FXML private Label pointsLabel;
+	@FXML private Button enterPointsButton;
+	@FXML private Button modifyButton;
+	@FXML private Button redeemPointsButton;
 	
 	public void enterPoints(ActionEvent event) throws IOException {
+		Stage oldStage = (Stage) enterPointsButton.getScene().getWindow();
+		oldStage.close();
+		
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/application/EnterPoints.fxml"));			
 		Scene scene = new Scene(root);
@@ -28,6 +35,9 @@ public class MainController implements Initializable {
 	}
 	
 	public void redeemPoints(ActionEvent event) throws IOException {
+		Stage oldStage = (Stage) redeemPointsButton.getScene().getWindow();
+		oldStage.close();
+		
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/application/RedeemPoints.fxml"));			
 		Scene scene = new Scene(root);
@@ -36,7 +46,10 @@ public class MainController implements Initializable {
 		stage.show();
 	}
 	
-	public void addTaskOrReward(ActionEvent event) throws IOException {
+	public void modify(ActionEvent event) throws IOException {
+		Stage oldStage = (Stage) modifyButton.getScene().getWindow();
+		oldStage.close();
+		
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/application/ModifyTaskOrReward.fxml"));			
 		Scene scene = new Scene(root);

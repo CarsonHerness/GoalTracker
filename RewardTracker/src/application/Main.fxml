@@ -12,22 +12,22 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="redeemPoints" layoutX="181.0" layoutY="164.0" mnemonicParsing="false" onAction="#redeemPoints" text="Redeem Points">
+      <Button fx:id="redeemPointsButton" layoutX="181.0" layoutY="164.0" mnemonicParsing="false" onAction="#redeemPoints" text="Redeem Points">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="enterPoints" layoutX="193.0" layoutY="104.0" mnemonicParsing="false" onAction="#enterPoints" text="Enter Points">
+      <Button fx:id="enterPointsButton" layoutX="193.0" layoutY="104.0" mnemonicParsing="false" onAction="#enterPoints" text="Enter Points">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="addTaskOrReward" layoutX="164.0" layoutY="225.0" mnemonicParsing="false" onAction="#addTaskOrReward" text="Add Task or Reward">
+      <Button fx:id="modifyButton" layoutX="81.0" layoutY="230.0" mnemonicParsing="false" onAction="#modify" text="Add, Remove, or Modify Task or Reward">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="116.0" layoutY="76.0" text="Choose one of the options below.">
+      <Label layoutX="116.0" layoutY="67.0" text="Choose one of the options below.">
          <font>
             <Font size="18.0" />
          </font>

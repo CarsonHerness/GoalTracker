@@ -1,16 +1,21 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ModifyTaskOrRewardController implements Initializable {
 	
@@ -50,6 +55,7 @@ public class ModifyTaskOrRewardController implements Initializable {
 	@FXML private TextField pointsOfTaskOrReward;
 	@FXML private Button submitModification;
 	@FXML private Label modifyErrorMessage;
+	@FXML private Button modifyBackToMenuButton;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,6 +107,18 @@ public class ModifyTaskOrRewardController implements Initializable {
 			modifyChooseTaskOrReward.setItems(Bank.getRewardList());
 			break;
 		}
+	}
+	
+	public void backToMainMenu(ActionEvent event) throws IOException {
+		Stage stage = (Stage) modifyBackToMenuButton.getScene().getWindow();
+		stage.close();
+		
+		Stage newStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));			
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		newStage.setScene(scene);
+		newStage.show();
 	}
 	
 
