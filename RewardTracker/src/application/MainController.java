@@ -34,7 +34,7 @@ public class MainController {
 	
 	public void addTaskOrReward(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/application/AddTaskOrReward.fxml"));			
+		Parent root = FXMLLoader.load(getClass().getResource("/application/ModifyTaskOrReward.fxml"));			
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
