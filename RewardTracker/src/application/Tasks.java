@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 
 public class Tasks {
 
-	private static Map<Task, Map<String, Double>> taskTypeMaps = new HashMap<>();
+	private static Map<TaskType, Map<String, Double>> taskTypeMaps = new HashMap<>();
 
 	private static Map<String, Double> timedTasks = new HashMap<>();
 	private static Map<String, Double> oneTimeTasks = new HashMap<>();
@@ -31,16 +31,16 @@ public class Tasks {
 	private static String oneTimeTasksSheet = "OneTimeTasks";
 	private static String repeatableTasksSheet = "RepeatableTasks";
 
-	private static Map<Task, String> sheetNameMap = new HashMap<>();
+	private static Map<TaskType, String> sheetNameMap = new HashMap<>();
 
 	private static void fillFixedMaps() {
-		taskTypeMaps.put(Task.TIMED, timedTasks);
-		taskTypeMaps.put(Task.ONE_TIME, oneTimeTasks);
-		taskTypeMaps.put(Task.REPEATABLE, repeatableTasks);
+		taskTypeMaps.put(TaskType.TIMED, timedTasks);
+		taskTypeMaps.put(TaskType.ONE_TIME, oneTimeTasks);
+		taskTypeMaps.put(TaskType.REPEATABLE, repeatableTasks);
 
-		sheetNameMap.put(Task.TIMED, timedTasksSheet);
-		sheetNameMap.put(Task.ONE_TIME, oneTimeTasksSheet);
-		sheetNameMap.put(Task.REPEATABLE, repeatableTasksSheet);
+		sheetNameMap.put(TaskType.TIMED, timedTasksSheet);
+		sheetNameMap.put(TaskType.ONE_TIME, oneTimeTasksSheet);
+		sheetNameMap.put(TaskType.REPEATABLE, repeatableTasksSheet);
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Tasks {
 			FileInputStream file = new FileInputStream(new File(rewardTrackerTasksFile));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			
-			for (Task taskType : Task.values()) {
+			for (TaskType taskType : TaskType.values()) {
 				XSSFSheet sheet = workbook.getSheet(sheetNameMap.get(taskType));
 				Iterator<Row> rowIterator = sheet.iterator();
 				while (rowIterator.hasNext()) {
@@ -91,7 +91,7 @@ public class Tasks {
 	 */
 	static void writeTasksToExcelFiles() {
         XSSFWorkbook workbook = new XSSFWorkbook();
-		for (Task taskType : Task.values()) {
+		for (TaskType taskType : TaskType.values()) {
 	        XSSFSheet sheet = workbook.createSheet(sheetNameMap.get(taskType));
 	        
 	        int rownum = 0;
@@ -114,15 +114,15 @@ public class Tasks {
 		}
 	}
 
-	static void addTask(String taskName, double value, Task taskType) {
+	static void addTask(String taskName, double value, TaskType taskType) {
 		taskTypeMaps.get(taskType).put(taskName, value);
 	}
 
-	static void removeTask(String taskName, Task taskType) {
+	static void removeTask(String taskName, TaskType taskType) {
 		taskTypeMaps.get(taskType).remove(taskName);
 	}
 
-	public static ObservableList<String> getTaskList(Task taskType) {
+	public static ObservableList<String> getTaskList(TaskType taskType) {
 		return FXCollections.observableArrayList(taskTypeMaps.get(taskType).keySet());
 	}
 

@@ -1,6 +1,6 @@
 package application;
 
-public enum Task {
+public enum TaskType {
 	TIMED, ONE_TIME, REPEATABLE;
 	
 	@Override

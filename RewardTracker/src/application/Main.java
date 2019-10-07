@@ -11,6 +11,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Tasks.initializeTaskLists();
+			Bank.initializeRewardListAndPoints();
 			Parent root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -24,6 +25,7 @@ public class Main extends Application {
 	@Override
 	public void stop() {
 		Tasks.writeTasksToExcelFiles();
+		Bank.writeRewardListAndPointsFile();
 	}
 	
 	public static void main(String[] args) {
