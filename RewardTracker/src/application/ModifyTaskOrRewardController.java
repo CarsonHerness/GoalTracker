@@ -271,7 +271,7 @@ public class ModifyTaskOrRewardController implements Initializable {
 	public void checkSubmitModifyTask(TaskType type) {
 		String oldName = modifyChooseTaskOrReward.getValue();
 		if (oldName != null) {
-			double oldPoints = Bank.getCost(oldName);
+			double oldPoints = Tasks.getScore(type, oldName);
 
 			String newNameString = nameOfTaskOrReward.getText();
 			String newPointsString = pointsOfTaskOrReward.getText();
