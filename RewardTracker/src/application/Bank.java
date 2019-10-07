@@ -121,7 +121,7 @@ public class Bank {
 		return FXCollections.observableArrayList(affordableRewardList);
 	}
 
-	static double getPoints() {
+	static Double getPoints() {
 		return points;
 	}
 }
