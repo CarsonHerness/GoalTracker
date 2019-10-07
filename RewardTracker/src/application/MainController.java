@@ -49,7 +49,7 @@ public class MainController implements Initializable {
 		oldStage.close();
 		
 		Stage stage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/application/ModifyTaskOrReward.fxml"));			
+		Parent root = FXMLLoader.load(getClass().getResource("/application/ModifyTaskorReward.fxml"));			
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);

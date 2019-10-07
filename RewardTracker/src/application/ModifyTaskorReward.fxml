@@ -21,7 +21,7 @@
       <ComboBox fx:id="modifyChooseAction" layoutX="142.0" layoutY="124.0" onAction="#chooseAction" prefHeight="25.0" prefWidth="221.0" promptText="Choose Add, Remove, or Modify" />
       <ComboBox fx:id="modifyChooseTaskOrReward" layoutX="300.0" layoutY="174.0" onAction="#chooseTaskOrReward" prefHeight="25.0" prefWidth="166.0" promptText="Choose Task or Reward" />
       <Label fx:id="modifyErrorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="261.0" prefHeight="35.0" prefWidth="476.0" textAlignment="CENTER" textFill="#f51d1d" wrapText="true" />
-      <Button fx:id="modifyBackToMenuButton" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back to Main Menu" />
+      <Button fx:id="modifyBackToMenuButton" layoutX="12.0" layoutY="25.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back to Main Menu" />
       <Label fx:id="oldNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="210.0" prefHeight="17.0" prefWidth="166.0" textAlignment="CENTER" />
       <Label fx:id="oldPointsLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="210.0" prefHeight="17.0" prefWidth="145.0" textAlignment="CENTER" />
    </children>
