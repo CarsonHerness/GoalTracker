@@ -21,12 +21,9 @@ public class EnterPointsController implements Initializable {
 	
 	private TaskType taskType;
 
-	private ObservableList<TaskType> taskTypes = FXCollections.observableArrayList(TaskType.TIMED, TaskType.REPEATABLE,
-			TaskType.ONE_TIME);
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		submitPointsTaskTypeList.setItems(taskTypes);
+		submitPointsTaskTypeList.setItems(FXCollections.observableArrayList(TaskType.values()));
 		submitPointsMinutes.setVisible(false);
 	}
 	

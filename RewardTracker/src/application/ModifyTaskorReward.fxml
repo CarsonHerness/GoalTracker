@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyTaskOrRewardController">
+   <children>
+      <Button fx:id="submitModification" layoutX="223.0" layoutY="228.0" mnemonicParsing="false" text="Submit" />
+      <TextField fx:id="nameOfTaskOrReward" layoutX="57.0" layoutY="193.0" prefHeight="25.0" prefWidth="166.0" />
+      <TextField fx:id="pointsOfTaskOrReward" layoutX="277.0" layoutY="193.0" prefHeight="25.0" prefWidth="72.0" />
+      <Label layoutX="41.0" layoutY="28.0" text="Add, Remove, or Modify Task or Reward">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="modifyChooseTaskTypeOrReward" layoutX="29.0" layoutY="137.0" onAction="#chooseTaskTypeOrReward" prefHeight="25.0" prefWidth="221.0" promptText="Choose Task Type or Reward" />
+      <ComboBox fx:id="modifyChooseAction" layoutX="139.0" layoutY="82.0" onAction="#chooseAction" prefHeight="25.0" prefWidth="221.0" promptText="Choose Add, Remove, or Modify" />
+      <ComboBox fx:id="modifyChooseTaskOrReward" layoutX="300.0" layoutY="137.0" prefHeight="25.0" prefWidth="166.0" promptText="Choose Task or Reward" />
+      <Label fx:id="modifyErrorMessage" layoutX="12.0" layoutY="268.0" prefHeight="17.0" prefWidth="476.0" textAlignment="CENTER" textFill="#f51d1d" />
+   </children>
+</AnchorPane>
